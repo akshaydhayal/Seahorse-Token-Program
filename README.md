@@ -21,3 +21,17 @@ For this project, the version used are :
 
 ## Getting started with Seahorse
 We initialize Seahorse Project using command `seahorse init token_program`. This will create a project directory with multiple files which is mostly similar to anchor projects, just will write our seahorse program in `token_program/programs_py/token_program.py`
+
+## Involved Accounts
+There are 2 types of accounts involved here, which are **TokenMint** and **TokenAccount**. The Manager is responsible for creating the Lottery and its parameters like lottery price and calling the random winner from all lottery buyers. On the other hand, Users are the people who are buying the lottery. 
+
+
+## Program Instructions
+We have 4 functions/instructions in this Program. Let's understand all the different Program instructions one by one.
+
+### 1. initTokenMint
+When someone wants to create a new token, we have to use something create-token function to initialize a new Mint Account. `initTokenMint` is the function where we create our TokenMint Accounts. TokenMint account contains the following informations: `mint-authority` which is a public-key (pubkey) authorized to mint this token,the number of `decimals` of the token etc. This account stores general information about the token and who has permissions over it. Observe that there is no data about token holdings of particular individuals. These are stored in Token Accounts.
+
+
+
+

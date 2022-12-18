@@ -26,6 +26,11 @@ We initialize Seahorse Project using command `seahorse init token_program`. This
 There are 2 types of accounts involved here, which are **TokenMint** and **TokenAccount**. The Manager is responsible for creating the Lottery and its parameters like lottery price and calling the random winner from all lottery buyers. On the other hand, Users are the people who are buying the lottery. 
 These whole thing is described very nicely in below presentaion.
 
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/tokenProgram0.png" alt="Alt text" title="Optional title" height="420" width="550">
+</p>
+
+
 ## Program Instructions
 We have 4 functions/instructions in this Program. Let's understand all the different Program instructions one by one.
 
@@ -33,8 +38,19 @@ We have 4 functions/instructions in this Program. Let's understand all the diffe
 When someone wants to create a new token, we have to use something create-token function to initialize a new Mint Account. `initTokenMint` is the function where we create our TokenMint Accounts. TokenMint account contains the following informations: 
 * `mint-authority` which is a public-key (pubkey) authorized to mint this token
 *  the number of `decimals` of the token etc. 
-
+```
+def init_token_mint(new_token_mint: Empty[TokenMint], signer: Signer):
+  new_token_mint.init(
+    payer = signer,
+    seeds = ['token-mint', signer],
+    decimals = 0,
+    authority = signer
+  )
+  ```
 This account stores general information about the token and who has permissions over it. Observe that there is no data about token holdings of particular individuals. These are stored in Token Accounts.
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/initMint1.png" alt="Alt text" title="Optional title" height="210" width="750">
+</p>
 
 
 ### 2. initTokenAccount
@@ -42,10 +58,22 @@ The token account holds information about the tokens owned by a pubkey. Ownershi
 The TokenAccount has number of fields like:
 * mint - this is the mint whose tokens this this account will hold
 * authority - the account that has authority over this account
+```
+def init_token_account(new_token_account: Empty[TokenAccount],recipient: Empty[TokenAccount],
+                       mint: TokenMint,signer: Signer):
+  new_token_account.init(payer = signer, seeds = ['token-account1', signer],
+                         mint = mint, authority = signer)
+  recipient.init(payer = signer, seeds = ['token-account2', signer],
+                         mint = mint, authority = signer)
+```
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig2.png" alt="Alt text" title="Optional title" height="190" width="840">
+</p>
 
-
-
-
+<p float="left">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig3.png" width="480" height="180"/> 
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig4.png" width="480" height="180"/>
+</p>
 
 ### 3. useTokenMint
 The mint authority can mint tokens for any user. This process updates both, the user’s balance (in the token-account) and the supply (in the mint account). To mint tokens we use the mint subcommand of spl-token as follows:

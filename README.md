@@ -15,7 +15,7 @@ You can check if package got installed correctly by running command like :
 For this project, the version used are :
 * anchor 0.25.0
 
-* seahorse v0.2.2
+* seahorse v0.2.5
 
 * node 19.0.0
 

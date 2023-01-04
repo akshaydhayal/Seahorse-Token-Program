@@ -77,9 +77,32 @@ def init_token_account(new_token_account: Empty[TokenAccount],recipient: Empty[T
 
 ### 3. useTokenMint
 The mint authority can mint tokens for any user. This process updates both, the user’s balance (in the token-account) and the supply (in the mint account). To mint tokens we use the mint subcommand of spl-token as follows:
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg6.png" alt="Alt text" title="Optional title" height="250" width="800">
+</p>
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg5.png" alt="Alt text" title="Optional title" height="140" width="850">
+</p>
+```
+def use_token_mint(mint: TokenMint,recipient: TokenAccount,signer: Signer):
+  mint.mint(authority = signer,
+    to = recipient,
+    amount = u64(3000)
+  )
+  ```
 
 ### 4. useTokenAccount
-
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg8.png" alt="Alt text" title="Optional title" height="250" width="800">
+</p>
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg7.png" alt="Alt text" title="Optional title" height="180" width="850">
+</p>  
+```
+def use_token_account(signer_account: TokenAccount, recipient: TokenAccount,signer: Signer):
+  signer_account.transfer( authority = signer,
+    to = recipient, amount = 100 )
+```
 
 
 

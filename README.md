@@ -55,7 +55,7 @@ This account stores general information about the token and who has permissions 
 
 Observe that there is no data about token holdings of particular individuals. These are stored in Token Accounts.
 <p align="center">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/initMint1.png" alt="Alt text" title="Optional title" height="210" width="750">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg1.png" alt="Alt text" title="Optional title" height="180" width="550">
 </p>
 
 
@@ -74,13 +74,19 @@ def init_token_account(new_token_account: Empty[TokenAccount],recipient: Empty[T
                          mint = mint, authority = signer)
 ```
 <p align="center">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig2.png" alt="Alt text" title="Optional title" height="190" width="840">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg2.png" alt="Alt text" title="Optional title" height="150" width="740">
 </p>
 
 <p float="left">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig3.png" width="480" height="180"/> 
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/fig4.png" width="480" height="180"/>
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg3.png" width="480" height="185"/> 
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg4.png" width="480" height="185"/>
 </p>
+We can create Associated TokenAccounts also. An Associated Token Account is a Token Account where the address of the Token Account is derived using an owner's public key and a token mint. Associated Token Accounts provide a deterministic way to find the Token Account owned by a specific publicKey for a specific token mint. You can create it like: 
+
+```
+  new_token_account.init( payer = signer, mint = mint, 
+  authority = signer, associated = True )
+ ```
 
 ### 3. useTokenMint
 Minting tokens is the process of issuing new tokens into circulation. When you mint tokens, you increase the supply of the token mint and deposit the newly minted tokens into a token account. Only the mint authority of a token mint is allowed to mint new tokens.

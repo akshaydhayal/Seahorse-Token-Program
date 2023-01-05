@@ -1,7 +1,7 @@
 This project was created by Seahorse 0.2.5.
 
 # Seahorse Token Program
-The Objective of this project is to create a **Lottery smart contract** where users can buy lottery tickets and a random winner will be selected from all participants and lottery prize will be rewarded to the winner.
+The Objective of this tutorial is to get started with SPL Tokens with seahorse. We will learn about TokenMints and TokenAccounta and how to use them to mint tokens,transfer tokens to other user's TokenAccount. To is to create a **Lottery smart contract** where users can buy lottery tickets and a random winner will be selected from all participants and lottery prize will be rewarded to the winner.
 
 ## Prerequisites
 We need to install some command line tools for this project to build. We need [Solana](https://docs.solana.com/cli/install-solana-cli-tools), [Anchor](https://project-serum.github.io/anchor/getting-started/installation.html#install-rust), [NodeJS](https://nodejs.org/en/) and [Seahorse](https://seahorse-lang.org/docs/installation). The links provided contain the step-by-step guide on installing these tools and the dependencies required for them like Rust.
@@ -83,11 +83,20 @@ The mint authority can mint tokens for any user. This process updates both, the 
 <p align="center">
   <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg5.png" alt="Alt text" title="Optional title" height="140" width="850">
 </p>
+
 ```
 def use_token_mint(mint: TokenMint,recipient: TokenAccount,signer: Signer):
   mint.mint(authority = signer,
     to = recipient,
     amount = u64(3000)
+  )
+  ```
+  
+  Additionally, we can burn some parts of minted tokens also.Like below, we are burning 1000 tokens from the `recipient` account from his 3000 minted tokens above (so after this instruction, recipient` will gain exactly 2000 token.)
+  But recipient_signer` must be the authority for the `recipient` token account.
+  ```
+    mint.burn( authority = recipient_signer,
+    holder = recipient, amount = 1000
   )
   ```
 
@@ -98,6 +107,7 @@ def use_token_mint(mint: TokenMint,recipient: TokenAccount,signer: Signer):
 <p align="center">
   <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg7.png" alt="Alt text" title="Optional title" height="180" width="850">
 </p>  
+
 ```
 def use_token_account(signer_account: TokenAccount, recipient: TokenAccount,signer: Signer):
   signer_account.transfer( authority = signer,

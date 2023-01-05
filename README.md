@@ -73,6 +73,7 @@ def init_token_account(new_token_account: Empty[TokenAccount],recipient: Empty[T
   recipient.init(payer = signer, seeds = ['token-account2', signer],
                          mint = mint, authority = signer)
 ```
+We have created below 2 TokenAccounts containing 0 token now.
 <p align="center">
   <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg2.png" alt="Alt text" title="Optional title" height="150" width="740">
 </p>
@@ -94,17 +95,17 @@ This process updates both, the user’s balance (in the token-account) and the s
 <p align="center">
   <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg6.png" alt="Alt text" title="Optional title" height="250" width="800">
 </p>
-<p align="center">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg5.png" alt="Alt text" title="Optional title" height="140" width="850">
-</p>
+
 
 ```
 def use_token_mint(mint: TokenMint,recipient: TokenAccount,signer: Signer):
   mint.mint(authority = signer,
-    to = recipient,
-    amount = u64(3000)
-  )
-  ```
+  to = recipient, amount = u64(3000))
+```
+The user's token balance has been updated to 3000 now.
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg5.png" alt="Alt text" title="Optional title" height="140" width="850">
+</p>
   
   Additionally, we can burn some parts of minted tokens also. Burning tokens is the process of decreasing the token supply of a given token mint. Burning tokens removes them from the given token account and from broader circulation.Like below, we are burning 1000 tokens from the `recipient` account from his 3000 minted tokens above (so after this instruction, recipient` will gain exactly 2000 token.)
   But recipient_signer` must be the authority for the `recipient` token account.

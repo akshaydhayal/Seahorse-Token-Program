@@ -120,15 +120,18 @@ This function is used to transfer tokens from one tockenAccount to the other.SPL
 <p align="center">
   <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg8.png" alt="Alt text" title="Optional title" height="250" width="800">
 </p>
-<p align="center">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg7.png" alt="Alt text" title="Optional title" height="180" width="850">
-</p>  
 
 ```
 def use_token_account(signer_account: TokenAccount, recipient: TokenAccount,signer: Signer):
   signer_account.transfer( authority = signer,
     to = recipient, amount = 100 )
 ```
+We have transferred 100 tokens from signer_account to recipient tokenAccount. After transfer, the token balances of both TokenAccounts will be 2900 and 100 tokens repectively.
+<p align="center">
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg7.png" alt="Alt text" title="Optional title" height="180" width="850">
+</p>  
+
+
 
 
 

@@ -78,8 +78,8 @@ def init_token_account(new_token_account: Empty[TokenAccount],recipient: Empty[T
 </p>
 
 <p float="left">
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg3.png" width="480" height="185"/> 
-  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg4.png" width="480" height="185"/>
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg3.png" width="460" height="185"/> 
+  <img src="https://github.com/akshaydhayal/Seahorse-Token-Program/blob/master/assets/figg4.png" width="460" height="185"/>
 </p>
 We can create Associated TokenAccounts also. An Associated Token Account is a Token Account where the address of the Token Account is derived using an owner's public key and a token mint. Associated Token Accounts provide a deterministic way to find the Token Account owned by a specific publicKey for a specific token mint. You can create it like: 
 
